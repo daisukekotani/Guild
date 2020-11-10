@@ -1,0 +1,79 @@
+<h2>Guild新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+        <div class="field">
+        <%= f.label :ユーザー名 %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        
+        <div class="field">
+        <%= f.label :性別 %><br />
+        <%= f.text_field :sex, autofocus: true, autocomplete: "sex" %>
+        <%= f.radio_button :sex_hidden, :false %>
+      　<%= f.label :sex_hidden, "公開", {value: :false, style: "display: inline-block;"} %>
+      　<%= f.radio_button :sex_hidden, :true %>
+      　<%= f.label :sex_hidden, "非公開", {value: :true, style: "display: inline-block;"} %>
+        </div>
+        
+        <div class="field">
+        <%= f.label :年齢 %><br />
+        <%= f.text_field :age, autofocus: true, autocomplete: "income" %>
+        <%= f.radio_button :age_hidden, :false %>
+      　<%= f.label :age_hidden, "公開", {value: :false, style: "display: inline-block;"} %>
+      　<%= f.radio_button :age_hidden, :true %>
+      　<%= f.label :age_hidden, "非公開", {value: :true, style: "display: inline-block;"} %>
+        </div>
+        
+        
+        <div class="field">
+        <%= f.label :年収 %><br />
+        <%= f.text_field :income, autofocus: true, autocomplete: "income" %>
+        <%= f.radio_button :income_hidden, :false %>
+      　<%= f.label :income_hidden, "公開", {value: :false, style: "display: inline-block;"} %>
+      　<%= f.radio_button :income_hidden, :true %>
+      　<%= f.label :income_hidden, "非公開", {value: :true, style: "display: inline-block;"} %>
+        </div>
+        
+        <div class="field">
+        <%= f.label :業種 %><br />
+        <%= f.select :industry, User.industries.keys, {}, {class: 'industry'} %>
+        </div>
+        
+        <div class="field">
+        <%= f.label :職種 %><br />
+        <%= f.text_field :job, autofocus: true, autocomplete: "job" %>
+        </div>
+        
+        <div class="field">
+        <%= f.label :自己紹介コメント%><br />
+        <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
+        </div>
+        
+        <div class="field">
+　　　　<%= f.label :パスワード %>
+　　　　<% if @minimum_password_length %>
+　　　　<em>(<%= @minimum_password_length %> characters minimum)</em>
+　　　　<% end %><br />
+　　　　<%= f.password_field :password, autocomplete: "new-password" %>
+　　　　</div>
+
+　　　　<div class="field">
+　　　　<%= f.label :パスワード確認 %><br />
+　　　　<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+　　　　</div>
+
+　　　　<div class="actions">
+　　　　<%= f.submit "Sign up" %>
+　　　　</div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
