@@ -1,0 +1,33 @@
+<div class="col-xs-9">
+<h2>ユーザー一覧</h2>
+<!--users一覧 -->
+<table class="table">
+	<thead>
+		<tr>
+			<th>ユーザー画像</th>
+			<th>名前</th>
+			<th>性別</th>
+			<th>年齢</th>
+			<th>年収</th>
+			<th>業種</th>
+			<th>職種</th>
+			<th>自己紹介</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+	
+　<tbody>
+	<% @users.each do |user| %>
+	　<tr>
+	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
+	　　<td><%= user.name %></td>
+	　　<td><%= user.sex %></td>
+	　　<td><%= user.age %></td>
+	　　<td><%= user.income %></td>
+	　　<td><%= user.industry %></td>
+	　　<td><%= user.job %></td>
+	　　<td><%= user.introduction %></td>
+	　　<td><%= link_to "マイページ", user_path(user) %></td>
+	　</tr>　
+	<% end %>
+	　

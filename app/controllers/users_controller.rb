@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def index
+    @user = current_user.id
+    @users = User.all
+  end
+  
   def edit
     @user = User.find(params[:id])
     if @user == current_user
