@@ -1,3 +1,5 @@
+<div class="container">
+<div class="row">
 <div class="col-xs-9">
   <h2><%= @voice.user.name %>の声</h2>
   
@@ -14,16 +16,77 @@
   
   <tbody>
       <tr>
-        <td><%= attachment_image_tag @voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
-        <td><%= @voice.user.name %></td>  
-        <td><%= @voice.body %></td>
-        <% if @voice.user == current_user %>
-				<td><%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %></td>
+        <td> <!--ユーザー画像-->
+          <%= attachment_image_tag @voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %>
+        </td>
+        <td><!--ユーザー名-->
+          <%= @voice.user.name %>
+        </td>  
+        <td><!--声-->
+          <%= @voice.body %>
+        </td>
+        <td><!--いいね機能-->
+	        <% if @voice.goodjobed_by?(current_user) %>
+          　<li>
+              <%= link_to voice_goodjobs_path(@voice), method: :delete do %>
+              <!--<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>-->
+              <%= @voice.goodjobs.count %> グッジョブ
+              <% end %>
+            </li>
+              <% else %>
+            <li>
+              <%= link_to voice_goodjobs_path(@voice), method: :post do %>
+              <!--<i class="fa fa-heart-o" aria-hidden="true"></i>-->
+              <%= @voice.goodjobs.count %> グッジョブ
+              <% end %>
+            </li>
+              <% end %>
+          </td>
+          <td><!--コメント件数-->
+            <%= @voice.post_comments.count %>件コメント
+          </td>
+         <% if @voice.user == current_user %>
+			  <td><%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %></td>
 				<td><%= link_to "削除", voice_path(@voice), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@voice.id}" %></td>
 				<% end %>
       </tr>
   </tbody>
  </table>  
-  
+ 
+        <!--コメント本文 ActiveRecord::StatementInvalid in Books#show "book_id" = ?-->
+        <% @voice.post_comments.each do |post_comment| %>
+　　　	<table class="table">
+　　　		<tr>
+　　　			<td><!--ユーザー画像-->
+　　　				<%= link_to user_path(post_comment.user) do %>
+						　<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %><br>
+						　<%= post_comment.user.name %>
+						　<% end %>
+　　　			</td>
+　　　			<td><!--コメント本文-->
+　　　			<%= post_comment.user.name %>
+　　　			<%= post_comment.created_at.strftime('%Y/%m/%d') %>
+　　　			<%= post_comment.comment %>
+　　　			</td>
+　　　			<% if post_comment.user == current_user %>
+　　　			<td><!--削除ボタン　ログインユーザーのみ-->
+　　　		　　<%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+　　　			</td>
+　　　		</tr>
+　　　	</table>
+　　　	<% end %>
+　　　	<% end %>
+　　　	
+        <!--コメント入力フォーム-->
+　　　	<%= form_with(model:[@voice, @post_comment], local: true) do |f| %>
+        <div class="row">
+        <div class="col-sm-９">
+        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        </div>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+        <% end %>  
   
 </div><!--col-xs-9-->
+</div><!--row-->
+</div><!--container-->

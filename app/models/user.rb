@@ -6,6 +6,8 @@ class User < ApplicationRecord
          
   attachment :profile_image, destroy: false
   has_many :voices
+  has_many :goodjobs, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
          
 enum industry: {
   農業・林業: 0,
