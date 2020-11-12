@@ -1,0 +1,36 @@
+
+<div class="col-xs-9">
+  <h2>ギルド員の声</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>ユーザー名</th>
+        <th>ヴォイス</th>
+      </tr>
+    </thead>
+  
+  
+  
+  <tbody>
+    <% @voice.each do |voice| %>
+      <tr>
+        <td><%= attachment_image_tag voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
+        <td><%= voice.user %></td>  
+        <td><%= voice.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ </table>  
+  
+  
+</div><!--col-xs-9-->
+</div><!--row -->
+</div><!--container-->
+
+
+<%= link_to '新規投稿', new_voice_path %>
+<%= link_to 'ユーザー一覧', users_path %>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+<%= link_to '投稿一覧', voices_path %>
