@@ -1,0 +1,29 @@
+<div class="col-xs-9">
+  <h2><%= @voice.user.name %>の声</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>ユーザー名</th>
+        <th>ヴォイス</th>
+      </tr>
+    </thead>
+  
+  
+  
+  <tbody>
+      <tr>
+        <td><%= attachment_image_tag @voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
+        <td><%= @voice.user.name %></td>  
+        <td><%= @voice.body %></td>
+        <% if @voice.user == current_user %>
+				<td><%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %></td>
+				<td><%= link_to "削除", voice_path(@voice), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@voice.id}" %></td>
+				<% end %>
+      </tr>
+  </tbody>
+ </table>  
+  
+  
+</div><!--col-xs-9-->
