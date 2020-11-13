@@ -50,7 +50,7 @@ https://docs.google.com/spreadsheets/d/1-C96z3OCWb7Es2eBJsmYFfar_5QeF2iUF5QkScgM
 - 言語：HTML,CSS,JavaScript,Ruby
 - フレームワーク：Ruby on Rails 5
 - JSライブラリ：jQuery
-- 仮想環境：AWS Cloud9 EC2
+- IDE ： Cloud9
 
 ## 使用素材
 - いらすとや（https://www.irasutoya.com）
