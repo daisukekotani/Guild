@@ -58,7 +58,9 @@
 　　　			</td>
 　　　			<% if post_comment.user == current_user %>
 　　　			<td><!--削除ボタン　ログインユーザーのみ-->
-　　　		　　<%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+　　　			<div id="post_comment_destroy-btn-<%= @post_comment.id %>">
+　　　		　　<%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+　　　		　</div>
 　　　			</td>
 　　　		</tr>
 　　　	</table>
@@ -66,14 +68,11 @@
 　　　	<% end %>
 　　　	
         <!--コメント入力フォーム-->
-　　　	<%= form_with(model:[@voice, @post_comment], remote: true) do |f| %>
-        <div class="row">
-        <div class="col-sm-９">
-        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-        </div>
-        </div>
-        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-        <% end %>  
+　　　	<td>
+					<div id="post_comment-btn-<%= @post_comment.id %>">
+          <%= render 'post_comments/post_comment', post_comment: @post_comment, voice: @voice %>
+          </div>
+        </td>
   
 </div><!--col-xs-9-->
 </div><!--row-->

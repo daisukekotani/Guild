@@ -1,9 +1,8 @@
-<!--コメント入力フォーム-->
-　　　	<%= form_with(model:[@voice, @post_comment], remote: true) do |f| %>
-        <div class="row">
-        <div class="col-sm-９">
-        <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-        </div>
-        </div>
-        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-        <% end %>  
+<%= form_with(model:[@voice, @post_comment], remote: true) do |f| %>
+<div class="row">
+<div class="col-sm-９">
+<%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+</div>
+</div>
+<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>  
