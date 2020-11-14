@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+  before_action :set_post_comment
   
   def create
     voice = Voice.find(params[:voice_id])
@@ -14,8 +15,14 @@ class PostCommentsController < ApplicationController
   end  
   
   private
+  
   def post_comment_params
     params.require(:post_comment).permit(:comment)
+  end
+  
+   private
+  def set_post_comment
+    @voice = Voice.find(params[:voice_id])
   end
   
 end

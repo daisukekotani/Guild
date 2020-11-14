@@ -5,4 +5,18 @@ class Voice < ApplicationRecord
     def goodjobed_by?(user)
         goodjobs.where(user_id: user.id).exists?
     end
+    
+  def self.search(search, word)
+    if search == "forward_match"
+      @voice = Voice.where("body LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @voice = Voice.where("body LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @voice = Voice.where("body LIKE?","#{word}")
+    elsif search == "partial_match"
+      @voice = Voice.where("body LIKE?","%#{word}%")
+    else
+      @voice = Voice.all
+    end
+  end    
 end    

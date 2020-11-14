@@ -1,5 +1,5 @@
 class GoodjobsController < ApplicationController
-   before_action :set_goodjob
+  before_action :set_goodjob
   
   def create
   voice = Voice.find(params[:voice_id])
@@ -13,7 +13,7 @@ class GoodjobsController < ApplicationController
   goodjob.destroy
   end
   
-   private
+  private
   def set_goodjob
     @voice = Voice.find(params[:voice_id])
   end
