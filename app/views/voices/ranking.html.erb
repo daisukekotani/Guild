@@ -1,20 +1,18 @@
-
+<!--<div class="container">-->
+<!--<div class="row">-->
 <div class="col-xs-9">
-  <h2>ギルド員の声</h2>
-  
-  <table class="table">
+    
+<table class="table">
     <thead>
       <tr>
         <th>ユーザー画像</th>
         <th>ユーザー名</th>
         <th>ヴォイス</th>
       </tr>
-    </thead>
-  
-  
-  
-  <tbody>
-    <% @voice.each do |voice| %>
+    </thead>    
+<tbody>
+ <h2>グッジョブランキング</h2>
+<% @all_goodjobs.each do |voice| %>
       <tr>
         <td><%= attachment_image_tag voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
         <td><%= voice.user %></td>  
@@ -29,13 +27,6 @@
     <% end %>
   </tbody>
  </table>  
- 
- 
- 
- <%= link_to "ランキング", ranking_path %>
- 
-</div><!--col-xs-9-->
+ </div><!--col-xs-9-->
 </div><!--row -->
 </div><!--container-->
-
-
