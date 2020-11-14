@@ -35,6 +35,10 @@ class VoicesController < ApplicationController
     @voice.destroy
     redirect_to user_path(current_user.id)
   end
+  
+  def ranking
+    @all_goodjobs = Voice.find(Goodjob.group(:voice_id).order('count(voice_id)desc').limit(10).pluck(:voice_id))
+  end  
 
     
   
