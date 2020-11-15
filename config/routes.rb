@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :post_comments, only: [:create, :destroy]
   end
   
+  root 'homes#top'
+  get 'homes/about'
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   get 'users/:id/follow', to: 'users#follow', as: 'users_follow'# フォロー一覧
