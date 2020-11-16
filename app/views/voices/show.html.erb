@@ -1,6 +1,5 @@
 <div class="container">
 <div class="row">
-<div class="col-xs-9">
   <h2><%= @voice.user.name %>の声</h2>
   
   <table class="table">
@@ -8,12 +7,10 @@
       <tr>
         <th>ユーザー画像</th>
         <th>ユーザー名</th>
-        <th>ヴォイス</th>
+        <th>声</th>
       </tr>
     </thead>
-  
-  
-  
+    
   <tbody>
       <tr>
         <td> <!--ユーザー画像-->
@@ -26,7 +23,7 @@
           <%= @voice.body %>
         </td>
         <td><!--いいねボタン-->
-					<div id="goodjob-btn-<%= @voice.id %>">
+					<div id="goodjob-btn<%= @voice.id %>">
           <%= render 'goodjobs/goodjob', voice: @voice %>
           </div>
         </td>
@@ -41,39 +38,11 @@
   </tbody>
  </table>  
  
-        <!--コメント本文 ActiveRecord::StatementInvalid in Books#show "book_id" = ?-->
-        <% @voice.post_comments.each do |post_comment| %>
-　　　	<table class="table">
-　　　		<tr>
-　　　			<td><!--ユーザー画像-->
-　　　				<%= link_to user_path(post_comment.user) do %>
-						　<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %><br>
-						　<%= post_comment.user.name %>
-						　<% end %>
-　　　			</td>
-　　　			<td><!--コメント本文-->
-　　　			<%= post_comment.user.name %>
-　　　			<%= post_comment.created_at.strftime('%Y/%m/%d') %>
-　　　			<%= post_comment.comment %>
-　　　			</td>
-　　　			<% if post_comment.user == current_user %>
-　　　			<td><!--削除ボタン　ログインユーザーのみ-->
-　　　			<div id="post_comment_destroy-btn-<%= @post_comment.id %>">
-　　　		　　<%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
-　　　		　</div>
-　　　			</td>
-　　　		</tr>
-　　　	</table>
-　　　	<% end %>
-　　　	<% end %>
-　　　	
-        <!--コメント入力フォーム-->
-　　　	<td>
-					<div id="post_comment-btn-<%= @post_comment.id %>">
-          <%= render 'post_comments/post_comment', post_comment: @post_comment, voice: @voice %>
-          </div>
-        </td>
-  
-</div><!--col-xs-9-->
+        <!--コメント本文・投稿フォームのテンプレート -->
+        <h2>コメント</h2>
+        <!--<div id="post_comment-btn<%= @voice.id %>">-->
+        <div class = "post_comments" >
+        <%= render 'post_comments/post_comment' %>
+        </div>
 </div><!--row-->
 </div><!--container-->

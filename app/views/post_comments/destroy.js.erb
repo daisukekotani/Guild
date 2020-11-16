@@ -1,1 +1,2 @@
-$('#post_comment_destroy-button-<%= @post_comment.id %>').html("<%= escape_javascript(render partial: "post_comments/post_comment", locals: { post_comment: @post_comment }) %>")
+$('.post_comments').html("<%= escape_javascript(render partial: "post_comments/post_comment", locals: { post_comment: @post_comment }) %>")
+$("textarea").val("");
