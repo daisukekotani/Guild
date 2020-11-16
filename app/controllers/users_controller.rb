@@ -5,10 +5,14 @@ class UsersController < ApplicationController
   end
   
   def index
-    @user = current_user.id
-    @users = User.all
+    if params[:industry_name].present?
+      @users = User.where(industry: params[:industry_name])#industryがnilの場合は全ユーザー表示
+    else
+      @users = User.all#industryに数値がある場合はその業種のユーザー表示
+    # @users = User.where(industry: 1 ) #industry1の漁業ユーザーのみ表示
+    end
   end
-  
+
   def edit
     @user = User.find(params[:id])
     if @user == current_user
@@ -47,4 +51,5 @@ class UsersController < ApplicationController
       :introduction,
       :profile_image)
   end
+  
 end
