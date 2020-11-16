@@ -6,8 +6,10 @@
     <thead>
       <tr>
         <th>ユーザー画像</th>
-        <th>ユーザー名</th>
-        <th>ヴォイス</th>
+        <th>声</th>
+        <th></th>
+        <th>グッジョブ数</th>
+        <th>コメント数</th>
       </tr>
     </thead>
   
@@ -17,12 +19,10 @@
     <% @voice.each do |voice| %>
       <tr>
         <td><%= attachment_image_tag voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
-        <td><%= voice.user %></td>  
         <td><%= voice.body %></td>
-         <td><!--いいねボタン-->
-					<div id="goodjob-btn-<%= voice.id %>">
-          <%= render 'goodjobs/goodjob', voice: voice %>
-          </div>
+        <td><!--グッジョブボタン-->
+          <div id="goodjob-btn-<%= voice.id %>">
+          <%= render 'goodjobs/goodjob', voice: voice %></div>
         </td>
         <td><%= voice.post_comments.count %>件コメント</td>
       </tr>
@@ -30,9 +30,6 @@
   </tbody>
  </table>  
  
- 
- 
- <%= link_to "ランキング", ranking_path %>
  
 </div><!--col-xs-9-->
 </div><!--row -->
