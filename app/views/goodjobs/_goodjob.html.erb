@@ -1,0 +1,11 @@
+<td>
+<% if voice.goodjobed_by?(current_user) %>
+    <%= link_to(voice_goodjobs_path(voice), method: :delete, remote: true, id: :"goodjob-button-#{voice.id}") do %>
+    <%= voice.goodjobs.count %> グッジョブ
+  <% end %>
+  <% else %>
+    <%= link_to(voice_goodjobs_path(voice), method: :post, remote: true, id: :"goodjob-button-#{voice.id}") do %>
+    <%= voice.goodjobs.count %> グッジョブ
+  <% end %>
+<% end %>
+</td>

@@ -1,0 +1,124 @@
+
+<div class="container">
+<div class="row">
+<div class="col-xs-3">
+<table>
+  <tr>
+    <th>プロフィール画像</th>
+    <%= attachment_image_tag @user, :profile_image, :fill, 180, 180, format: 'jpeg' %>
+  </tr>
+  <tr>
+    <th>ユーザーid</th> 
+    <th><%= @user.id %></th>
+  </tr>
+  <tr>
+    <th>ユーザー名</th>
+    <th><%= @user.name %></th>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <th><%= @user.email %></th>
+  </tr>
+  <tr>
+    <th>性別</th> 
+    <% if @user.sex_hidden == false %>
+    <th><%= @user.sex %></th>
+    <% else %>
+    <th>非公開</th>
+    <% end %>
+  </tr>
+  <tr>
+    <th>年齢</th>
+    <% if @user.age_hidden == false %>
+    <th><%= @user.age %></th>
+    <% else %>
+    <th>非公開</th>
+    <% end %>
+  </tr>
+  <tr>
+    <th>年収</th> 
+    <% if @user.income_hidden == false %>
+    <th><%= @user.income %></th>
+    <% else %>
+    <th>非公開</th>
+    <% end %>
+  </tr>
+  <tr>
+    <th>業種</th> 
+    <th><%= @user.industry %></th>
+  </tr>
+  <tr>
+    <th>職種</th> 
+    <th><%= @user.job %></th>
+  </tr>
+  <tr>
+    <th>自己紹介コメント</th>
+    <th><%= @user.introduction %></th>
+  </tr>
+  <tr>
+    <th>フォロー数</th>
+    <th><%= link_to @user.follower.count ,users_follow_path(@user) %></th>
+  </tr>
+  <tr>
+    <th>フォワー数</th>
+    <th><%= link_to @user.followed.count ,users_follower_path(@user) %></th>
+  </tr>
+  <tr>
+    <td>
+			<% if user_signed_in? %>
+      <% if current_user.following?(@user) %>
+      <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn-sm btn-primary" %>
+      <% else %>
+      <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn-sm btn-success" %>
+      <% end %>
+      <% end %>
+    </td>
+	</tr>
+  </tr>
+   <tr>
+     <th>
+       <%  if @user.id == current_user.id %>
+       <%= link_to edit_user_path(@user) do %>
+       <span class="col-xs-4 btn btn-default glyphicon glyphicon-wrench"></span>
+       <% end %>
+       <% end %>
+     </th>
+   </tr>
+   <tr>
+     <th><%= link_to '新規投稿', new_voice_path %></th>
+   </tr>
+</table>
+
+</div> <!--col-xs-3-->
+<div class="col-xs-9">
+  <h2><%= @user.name %>の声</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>ユーザー名</th>
+        <th>ヴォイス</th>
+      </tr>
+    </thead>
+  
+  
+  
+  <tbody>
+    <% @voices.each do |voice| %>
+      <tr>
+        <td><%= attachment_image_tag @user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
+        <td><%= voice.user.name %></td>  
+        <td><%= link_to voice.body, voice_path(voice.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ </table>  
+  
+  
+</div><!--col-xs-9-->
+</div><!--row -->
+</div><!--container-->
+
+
+

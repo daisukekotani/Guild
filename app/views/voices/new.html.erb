@@ -1,0 +1,16 @@
+<div class="container">
+<div class="row">
+<div class="col-sm-９">
+  <h1>新規投稿</h1>
+<!-- form_with部分 -->
+<%= form_with model:@voice, local:true do |f| %>
+
+  <h4>内容</h4>
+  <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "投稿ここに" %>
+
+  <%= f.submit '投稿' %>
+
+<% end %>
+</div>
+</div>
+</div>

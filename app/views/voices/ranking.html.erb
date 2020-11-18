@@ -1,0 +1,33 @@
+<!--<div class="container">-->
+<!--<div class="row">-->
+<div class="col-xs-9">
+    
+<table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>声</th>
+        <th></th>
+        <th>グッジョブ数</th>
+        <th>コメント数</th>
+      </tr>
+    </thead>    
+<tbody>
+ <h2>グッジョブランキング</h2>
+　　　<% @all_goodjobs.each do |voice| %>
+      <tr>
+        <td><%= attachment_image_tag voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
+        <td><%= voice.body %></td>
+         <td><!--グッジョブボタン-->
+					<div id="goodjob-btn-<%= voice.id %>">
+          <%= render 'goodjobs/goodjob', voice: voice %>
+          </div>
+        </td>
+        <td><%= voice.post_comments.count %>件コメント</td>
+      </tr>
+    <% end %>
+  </tbody>
+ </table>  
+ </div><!--col-xs-9-->
+</div><!--row -->
+</div><!--container-->
