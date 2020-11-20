@@ -12,7 +12,7 @@ class VoicesController < ApplicationController
   end
   
   def index
-    @voice = Voice.all
+    @voices = Voice.all
   end
   
   def show

@@ -28,7 +28,13 @@
           </div>
         </td>
           <td><!--コメント件数-->
-            <%= @voice.post_comments.count %>件コメント
+          <% if @voice.post_comments.count == 0 %>
+          <i class="far fa-comment-dots"></i>
+          <%= @voice.post_comments.count %>件
+          <% else %>
+          <i class="fas fa-comment-dots"></i>
+          <%= @voice.post_comments.count %>件
+          <% end %>
           </td>
          <% if @voice.user == current_user %>
 			  <td><%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %></td>

@@ -1,5 +1,6 @@
-<!--業種検索-->
-<!--追加分-->
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
  <div class="dropdown">
  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
  業種検索
@@ -9,19 +10,10 @@
  	<% User.industries.keys.to_a.each do |key| %>
  	  <li role="presentation"><%= link_to key, users_path(industry_name: key) %></li>
  	<% end %>
- 	
- <!--<@industrys.each do |user,industry| %>-->
- <!--<li role="presentation"><= link_to user.industry, users_path(user: user.industry) %></li>-->
- <!--< end %>-->
- <!--<= select :industry, :name, User.industries.keys.to_a, include_blank: true %>-->
  </ul>
- </div><br>
- <!--<div>-->
- 	
-<!--追加分-->
+ </div>
+ 
 <!--業種検索-->
-
-<!--追加分-->
 <!--業種が選択されていない場合は全ユーザー一覧-->
  <% if  @industry.nil? %>
  <h1>ユーザ一覧</h1>
@@ -29,14 +21,7 @@
  <!--業種が選択されている場合はその業種のユーザー一覧-->
  <h1><%= @industry.name %></h1>
  <% end %>
- <!--追加分-->
-
-
-
-
-<div class="col-xs-9">
-<!--<h2>ユーザー一覧</h2>-->
-<!--users一覧 -->
+ 
 <table class="table">
 	<thead>
 		<tr>
@@ -57,17 +42,29 @@
 	　<tr>
 	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
 	　　<td><%= user.name %></td>
+	　　<% if user.sex_hidden == false %>
 	　　<td><%= user.sex %></td>
+	　　<% else %>
+	　　<th>非公開</th>
+	　　<% end %>
+	　　<% if user.age_hidden == false %> 
 	　　<td><%= user.age %></td>
+	　　<% else %>
+	　　<th>非公開</th>
+      <% end %>
+      <% if user.income_hidden == false %>
 	　　<td><%= user.income %></td>
+	　　<% else %>
+	　　<th>非公開</th>
+      <% end %>
 	　　<td><%= user.industry %></td>
 	　　<td><%= user.job %></td>
 	　　<td><%= user.introduction %></td>
 	　　<td>
 	　　	<% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn-sm btn-primary" %>
         <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+        <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn-sm btn-success" %>
       <% end %>
 	　　</td>
 	　　<td><%= link_to "マイページ", user_path(user) %></td>
@@ -75,3 +72,6 @@
 	<% end %>
 </tbody>
 
+</div><!--col-xs-12-->
+</div><!--row -->
+</div><!--container-->
