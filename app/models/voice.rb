@@ -6,9 +6,6 @@ class Voice < ApplicationRecord
         goodjobs.where(user_id: user.id).exists?
     end
     
-  validates :body, presence: true
-  validates :body, length: {maximum: 128}
-    
   def self.search(search, word)
     if search == "forward_match"
       @voice = Voice.where("body LIKE?","#{word}%")
