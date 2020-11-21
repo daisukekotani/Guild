@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+ 
+ 
   def show
     @user = User.find(params[:id])
     @voices = @user.voices
@@ -23,9 +25,12 @@ class UsersController < ApplicationController
   end
   
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(current_user.id)
+      @user = User.find(params[:id])
+    if @user.update(user_params)
+     redirect_to user_path(current_user.id), notice: "登録情報更新しました"
+    else
+      render "edit"
+    end
   end
   
   def follow
