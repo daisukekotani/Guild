@@ -46,3 +46,13 @@
 // td{
 //   width: 70%;
 // }
+
+@media screen and (max-width: 768px) {
+header {
+    width: 100%;
+  }
+  body {
+    display: block; /*横並びを解除*/
+    width: 100%;
+  }
+}

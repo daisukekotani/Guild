@@ -28,6 +28,14 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+  
+  validates :name, presence: true
+  validates :name, length: {maximum: 10}
+  validates :sex, presence: true
+  validates :age, presence: true
+  validates :income, presence: true
+  validates :job, length: {maximum: 10}
+  validates :introduction, length: {maximum: 10}
          
 enum industry: {
   農業・林業: 0,
