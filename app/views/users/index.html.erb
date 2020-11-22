@@ -1,6 +1,6 @@
-<div class="container">
-<div class="row">
-<div class="col-xs-12">
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12">-->
  <div class="dropdown">
  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
  業種検索
@@ -21,7 +21,7 @@
  <!--業種が選択されている場合はその業種のユーザー一覧-->
  <h1><%= @industry.name %></h1>
  <% end %>
- 
+<div class="table-responsive">
 <table class="table">
 	<thead>
 		<tr>
@@ -40,8 +40,13 @@
 　<tbody>
 	<% @users.each do |user| %>
 	　<tr>
-	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
-	　　<td><%= user.name %></td>
+	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %>
+	　　<!--</td>-->
+	　　<!--<td>-->
+	　　	<%= link_to user_path(user.id) do %>
+	　　	<%= user.name %>
+	　　	<% end %>
+	　　</td>
 	　　<% if user.sex_hidden == false %>
 	　　<td><%= user.sex %></td>
 	　　<% else %>
@@ -67,11 +72,11 @@
         <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn-sm btn-success" %>
       <% end %>
 	　　</td>
-	　　<td><%= link_to "マイページ", user_path(user) %></td>
+	　<!--　<td><= link_to "マイページ", user_path(user) %></td>-->
 	　</tr>　
 	<% end %>
 </tbody>
-
+</div>
 </div><!--col-xs-12-->
 </div><!--row -->
 </div><!--container-->

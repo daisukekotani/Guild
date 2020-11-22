@@ -1,56 +1,51 @@
 <div class="container">
 <div class="row">
+  <div class="col-xs-12 col-lg-12">
   <h2><%= @voice.user.name %>の声</h2>
   
   <table class="table">
-    <thead>
-      <tr>
-        <th>ユーザー画像</th>
-        <th>ユーザー名</th>
-        <th>声</th>
-      </tr>
-    </thead>
+   
     
   <tbody>
       <tr>
         <td> <!--ユーザー画像-->
           <%= attachment_image_tag @voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %>
-        </td>
-        <td><!--ユーザー名-->
+          <%= link_to user_path(@voice.user) do %>
           <%= @voice.user.name %>
-        </td>  
-        <td><!--声-->
-          <%= @voice.body %>
-        </td>
-        <td><!--いいねボタン-->
-					<div id="goodjob-btn<%= @voice.id %>">
+          <% end %>
+          <% if @voice.user == current_user %>
+			    <%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %>
+          <%= link_to "削除", voice_path(@voice), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@voice.id}" %>
+				  <% end %>
+				</td>  
+				<td>
+          <div id="goodjob-btn<%= @voice.id %>">
           <%= render 'goodjobs/goodjob', voice: @voice %>
           </div>
         </td>
-          <td><!--コメント件数-->
+        <td>
           <% if @voice.post_comments.count == 0 %>
           <i class="far fa-comment-dots"></i>
-          <%= @voice.post_comments.count %>件
+          <%= @voice.post_comments.count %>
           <% else %>
           <i class="fas fa-comment-dots"></i>
-          <%= @voice.post_comments.count %>件
+          <%= @voice.post_comments.count %>
           <% end %>
-          </td>
-         <% if @voice.user == current_user %>
-			  <td><%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %></td>
-				<td><%= link_to "削除", voice_path(@voice), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@voice.id}" %></td>
-				<% end %>
-      </tr>
+        </td>
+      </tr>  
+        <td>
+          <%= @voice.body %>
+        </td>
   </tbody>
  </table>  
  　　　　
  　　
  　　　　
         <!--コメント本文・投稿フォームのテンプレート -->
-        <h2>コメントです</h2>
+        <h2>コメント</h2>
         <div class = "post_comments" >
         <%= render 'post_comments/post_comment' %>
         </div>
-        
+</div>        
 </div><!--row-->
 </div><!--container-->
