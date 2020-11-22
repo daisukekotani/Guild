@@ -10,7 +10,9 @@
       <tr>
         <td> <!--ユーザー画像-->
           <%= attachment_image_tag @voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %>
+          <%= link_to user_path(@voice.user) do %>
           <%= @voice.user.name %>
+          <% end %>
           <% if @voice.user == current_user %>
 			    <%= link_to "編集", edit_voice_path(@voice), class: "btn-sm btn-success edit_book_#{@voice.id}" %>
           <%= link_to "削除", voice_path(@voice), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@voice.id}" %>
