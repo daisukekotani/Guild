@@ -2,38 +2,33 @@
         <% @voice.post_comments.each do |post_comment| %>
 　　　   <table class="table">
 　　　	<tr>
-　　　	<td>
-　　　	<%= link_to user_path(post_comment.user) do %>
-        <%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %><br>
-	<%= post_comment.user.name %>
-	<% end %>
-　　　	</td>
-　　　	<td>
-　　　	<%= post_comment.created_at.strftime('%Y/%m/%d') %>
-　　　	<%= post_comment.comment %>
-　　　	</td>
-　　　	<% if post_comment.user == current_user %>
-　　　	<td><!--削除ボタン　ログインユーザーのみ-->
-　　　	<div id="post_comment_destroy-btn-<%= post_comment.id %>">
-　　　	<%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
-　　　	</div>
-　　　	</td>
+　　　	  <td>
+            <%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %>
+            <%= link_to user_path(post_comment.user) do %>
+   	    <%= post_comment.user.name %>
+	    <% end %>
+	    <% if post_comment.user == current_user %>
+　　　	    <td>
+　　　	      <div id="post_comment_destroy-btn-<%= post_comment.id %>">
+　　　	      <%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+　　　	      </div>
+　　　	      <% end %>
+　　　	    </td>
+　　　	  </td>
 　　　	</tr>
-　　　	<% end %>
+　　　  <td>
+　　　	  <%= post_comment.comment %>
+　　　	</td>
 　　　	<% end %>
 　　　	 </table> 
-　　　	 
+　　　	
 　　　	  <!--コメント入力フォーム-->
-        <%= form_with(model:[@voice, @post_comment], remote: true) do |f| %>
+        <%= form_with(model:[@voice, @post_comment],data:{remote: true}) do |f| %>
         <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
         <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
         <% end %>
         
-        <!--<p>テスト</p>-->
-        <!--<p>ボイス</p>-->
-        <!--<= voice.post_comments %>-->
-        <!--<p>コメント</p>-->
-        <!--<= post_comment.comment %>-->
+        
 　　　	
 　　　	
 　　　
