@@ -25,7 +25,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>ユーザー画像</th>
+			<th>画像</th>
 			<th>名前</th>
 			<th>性別</th>
 			<th>年齢</th>
@@ -40,9 +40,8 @@
 　<tbody>
 	<% @users.each do |user| %>
 	　<tr>
-	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %>
-	　　<!--</td>-->
-	　　<!--<td>-->
+	　　<td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
+	　　<td>
 	　　	<%= link_to user_path(user.id) do %>
 	　　	<%= user.name %>
 	　　	<% end %>
@@ -50,17 +49,17 @@
 	　　<% if user.sex_hidden == false %>
 	　　<td><%= user.sex %></td>
 	　　<% else %>
-	　　<th>非公開</th>
+	　　<td>非公開</td>
 	　　<% end %>
 	　　<% if user.age_hidden == false %> 
 	　　<td><%= user.age %></td>
 	　　<% else %>
-	　　<th>非公開</th>
+	　　<td>非公開</td>
       <% end %>
       <% if user.income_hidden == false %>
 	　　<td><%= user.income %></td>
 	　　<% else %>
-	　　<th>非公開</th>
+	　　<td>非公開</td>
       <% end %>
 	　　<td><%= user.industry %></td>
 	　　<td><%= user.job %></td>

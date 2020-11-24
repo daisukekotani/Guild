@@ -35,25 +35,14 @@
   background-image: url(logo.png);
 }
 
-// table{
-//   width: 100%;
-// }
-
-// th{
-//   width: 30%;
-// }
-
-// td{
-//   width: 70%;
-// }
-
-@media screen and (max-width: 768px) {
-header {
-    width: 100%;
-  }
-  body {
-    display: block; /*横並びを解除*/
-    width: 100%;
-  }
+.nav>li {
+    float: left;
+    display: inline-block;
 }
-
+.navbar-nav {
+    margin: 0;
+}
+.navbar-nav>li>a {
+    padding-top: 14.5px;
+    padding-bottom: 14.5px;
+}

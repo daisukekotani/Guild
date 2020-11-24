@@ -3,15 +3,6 @@
 <div class="col-xs-12">
     
 <table class="table">
-    <thead>
-      <tr>
-        <th>ユーザー画像</th>
-        <th>声</th>
-        <th></th>
-        <th>グッジョブ数</th>
-        <th>コメント数</th>
-      </tr>
-    </thead>    
 <tbody>
  <h2>グッジョブランキング</h2>
 　　　<% @all_goodjobs.each do |voice| %>
@@ -26,10 +17,10 @@
         <td>
           <% if voice.post_comments.count == 0 %>
           <i class="far fa-comment-dots"></i>
-          <%= voice.post_comments.count %>件
+          <%= voice.post_comments.count %>
           <% else %>
           <i class="fas fa-comment-dots"></i>
-          <%= voice.post_comments.count %>件
+          <%= voice.post_comments.count %>
           <% end %>
         </td>
       </tr>
