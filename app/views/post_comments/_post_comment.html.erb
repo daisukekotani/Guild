@@ -1,27 +1,27 @@
-        <!--コメント本文-->
-        <% @voice.post_comments.each do |post_comment| %>
-　　　  <table class="table">
-　　　	<tr>
-　　　	  <td>
-            <%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %>
-            <%= link_to user_path(post_comment.user) do %>
-   	    <%= post_comment.user.name %>
-	    <% end %>
-	    <% if post_comment.user == current_user %>
-　　　	    <div id="post_comment_destroy-btn-<%= post_comment.id %>">
-　　　	    <%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
-　　　	    </div>
-　　　	    <% end %>
-　　　	  </td>
-　　　	</tr>
-　　　  <td>
-　　　	  <%= post_comment.comment %>
-　　　	</td>
-　　　	 
-　　　	 <% end %>
-　　　	 </table> 
-　　　	
-　　　	  <!--コメント入力フォーム-->
+<!--コメント本文-->
+<% @voice.post_comments.each do |post_comment| %>
+  <table class="table">
+    <tr>
+      <td>
+        <%= attachment_image_tag(post_comment.user, :profile_image, :fill, 40, 40, fallback: "no-image-mini.jpg") %>
+        <%= link_to user_path(post_comment.user) do %>
+        <%= post_comment.user.name %>
+        <% end %>
+        
+        <% if post_comment.user == current_user %>
+        <div id="post_comment_destroy-btn-<%= post_comment.id %>">
+        <%= link_to "削除", voice_post_comment_path(post_comment.voice, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+        </div>
+        <% end %>
+        
+      </td>
+    </tr>
+      <td>
+        <%= post_comment.comment %>
+      </td>
+        <% end %>
+  </table>
+  
         <%= form_with(model:[@voice, @post_comment],data:{remote: true}) do |f| %>
         <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
         <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>

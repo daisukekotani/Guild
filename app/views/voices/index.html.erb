@@ -1,37 +1,32 @@
 <div class="container">
-<div class="row">
-<div class="col-xs-12">
-
-  <h2>ギルド員の声</h2>
-  
-  <table class="table">
-  <tbody>
-    <% @voices.each do |voice| %>
-      <tr>
-        <td><%= attachment_image_tag(voice.user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
-        <td><%= link_to voice.body, voice_path(voice.id) %></td>
-        <td><!--グッジョブボタン-->
-          <div id="goodjob-btn-<%= voice.id %>">
-          <%= render 'goodjobs/goodjob', voice: voice %></div>
-        </td>
-        <td>
-          <% if voice.post_comments.count == 0 %>
-          <i class="far fa-comment-dots"></i>
-          <%= voice.post_comments.count %>
-          <% else %>
-          <i class="fas fa-comment-dots"></i>
-          <%= voice.post_comments.count %>
-          <% end %>
-        </td>
-      </tr>
-      
-    <% end %>
-  </tbody>
- </table>  
- 
- 
-</div><!--col-xs-12-->
-</div><!--row -->
-</div><!--container-->
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>ギルド員の声</h2>
+        <table class="table">
+          <tbody>
+            <% @voices.each do |voice| %>
+              <tr>
+                <td><%= attachment_image_tag(voice.user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
+                <td><%= link_to voice.body, voice_path(voice.id) %></td>
+                <td>
+                  <div id="goodjob-btn-<%= voice.id %>">
+                  <%= render 'goodjobs/goodjob', voice: voice %></div>
+                </td>
+                <td>
+                  <% if voice.post_comments.count == 0 %>
+                  <i class="far fa-comment-dots"></i>
+                  <%= voice.post_comments.count %>
+                  <% else %>
+                  <i class="fas fa-comment-dots"></i>
+                  <%= voice.post_comments.count %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>  
+    </div>
+  </div>
+</div>
 
 

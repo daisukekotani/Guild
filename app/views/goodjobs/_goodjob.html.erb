@@ -1,13 +1,13 @@
 <td>
 <% if voice.goodjobed_by?(current_user) %>
-    <%= link_to(voice_goodjobs_path(voice), method: :delete, remote: true, id: :"goodjob-button-#{voice.id}") do %>
-   <i class="fas fa-thumbs-up"></i>
-    <%= voice.goodjobs.count %>
-  <% end %>
-  <% else %>
-    <%= link_to(voice_goodjobs_path(voice), method: :post, remote: true, id: :"goodjob-button-#{voice.id}") do %>
-    <i class="far fa-thumbs-up"></i>
-    <%= voice.goodjobs.count %>
-  <% end %>
+  <%= link_to(voice_goodjobs_path(voice), method: :delete, remote: true, id: :"goodjob-button-#{voice.id}") do %>
+  <i class="fas fa-thumbs-up"></i>
+  <%= voice.goodjobs.count %>
+<% end %>
+<% else %>
+  <%= link_to(voice_goodjobs_path(voice), method: :post, remote: true, id: :"goodjob-button-#{voice.id}") do %>
+  <i class="far fa-thumbs-up"></i>
+  <%= voice.goodjobs.count %>
+<% end %>
 <% end %>
 </td>
