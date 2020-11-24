@@ -1,94 +1,87 @@
 <div class="container">
-
-<div class="row">
-<div class="col-xs-12 col-lg-4">
-<%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg' %>
-</div>  
+  <div class="row">
+    <div class="col-xs-12 col-lg-4">
+      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg' %>
+    </div>  
   
-  <div class="col-xs-12 col-lg-8">
-  <table class="table table-hover table-inverse">
-  <tr>
-    <th>性　別</th> 
-    <% if @user.sex_hidden == false %>
-    <th><%= @user.sex %></th>
-    <% else %>
-    <th>非公開</th>
-    <% end %>
-  </tr>
-  <tr>
-    <th>年齢</th>
-    <% if @user.age_hidden == false %>
-    <th><%= @user.age %></th>
-    <% else %>
-    <th>非公開</th>
-    <% end %>
-  </tr>
-  <tr>
-    <th>年収</th> 
-    <% if @user.income_hidden == false %>
-    <th><%= @user.income %></th>
-    <% else %>
-    <th>非公開</th>
-    <% end %>
-  </tr>
-  <tr>
-    <th>業種</th> 
-    <th><%= @user.industry %></th>
-  </tr>
-  <tr>
-    <th>職種</th> 
-    <th><%= @user.job %></th>
-  </tr>
-  <tr>
-    <th>コメント</th>
-    <th><%= @user.introduction %></th>
-  </tr>
-  <tr>
-    <th>フォロー数</th>
-    <th><%= link_to @user.follower.count ,users_follow_path(@user) %></th>
-  </tr>
-  <tr>
-    <th>フォワー数</th>
-    <th><%= link_to @user.followed.count ,users_follower_path(@user) %></th>
-  </tr>
-  </table>
-			
-			<% if user_signed_in? %>
+    <div class="col-xs-12 col-lg-8">
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th>性　別</th> 
+          <% if @user.sex_hidden == false %>
+          <th><%= @user.sex %></th>
+          <% else %>
+          <th>非公開</th>
+          <% end %>
+        </tr>
+        <tr>
+          <th>年齢</th>
+          <% if @user.age_hidden == false %>
+          <th><%= @user.age %></th>
+          <% else %>
+          <th>非公開</th>
+          <% end %>
+        </tr>
+        <tr>
+          <th>年収</th> 
+          <% if @user.income_hidden == false %>
+          <th><%= @user.income %></th>
+          <% else %>
+          <th>非公開</th>
+          <% end %>
+        </tr>
+        <tr>
+          <th>業種</th> 
+          <th><%= @user.industry %></th>
+        </tr>
+        <tr>
+          <th>職種</th> 
+          <th><%= @user.job %></th>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>フォロー数</th>
+          <th><%= link_to @user.follower.count ,users_follow_path(@user) %></th>
+        </tr>
+        <tr>
+          <th>フォワー数</th>
+          <th><%= link_to @user.followed.count ,users_follower_path(@user) %></th>
+        </tr>
+      </table>
+      
+      <% if user_signed_in? %>
       <% if current_user.following?(@user) %>
-      <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn-sm btn-danger" %>
+        <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn-sm btn-danger" %>
       <% else %>
-      <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn-sm btn-success" %>
+        <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn-sm btn-success" %>
       <% end %>
       <% end %>
-   
       <%  if @user.id == current_user.id %>
-      <%= link_to '登録情報編集', edit_user_path(@user), class: "btn-sm btn-warning" %>
+        <%= link_to '登録情報編集', edit_user_path(@user), class: "btn-sm btn-warning" %>
       <% end %>
-       
-      <%= link_to '新規投稿', new_voice_path, class: "btn-sm btn-success" %>
-     
-</div> <!--col-xs-8-->
-</div><!--row -->
-
-<div class="row">
-<div class="col-xs-12">
-  <h2><%= @user.name %>の声</h2>
+        <%= link_to '新規投稿', new_voice_path, class: "btn-sm btn-success" %>
+    </div> 
+  </div>
   
-  <table class="table">
-  <tbody>
-    <% @voices.each do |voice| %>
-      <tr>
-        <td><%= attachment_image_tag @user, :profile_image, :fill, 34, 34, format: 'jpeg' %><%= voice.user.name %></td>
-      </tr>
-      <td><%= link_to voice.body, voice_path(voice.id) %></td>
-    <% end %>
-  </tbody>
- </table>  
-</div><!--col-xs-12-->
-</div><!--row -->
-
-
-</div><!--container-->
+  <div class="row">
+    <div class="col-xs-12">
+      <h2><%= @user.name %>の声</h2>
+        <table class="table">
+          <tbody>
+            <% @voices.each do |voice| %>
+              <tr>
+                <td><%= attachment_image_tag @user, :profile_image, :fill, 34, 34, format: 'jpeg' %><%= voice.user.name %></td>
+              </tr>
+                <td><%= link_to voice.body, voice_path(voice.id) %></td>
+            <% end %>
+          </tbody>
+        </table>  
+    </div>
+  </div>
+</div>
 
 
 

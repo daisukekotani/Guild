@@ -1,28 +1,29 @@
 <div class="container">
-<div class="row">
-<div class="col-xs-12">
-<h2>フォロワー</h2>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>フォロワー</h2>
 
-<% if @user.follower_user.count == 0 %>
-<h6>ユーザーはいません</h6>
-<% else %>
+      <% if @user.follower_user.count == 0 %>
+        <h6>ユーザーはいません</h6>
+      <% else %>
 
-<table class="table">
-	<tbody>
-  <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
-  <tr>
-    <td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
-    <td>
-      <%= link_to user_path(user.id) do %>
-      <%= user.name %>
+      <table class="table">
+        <tbody>
+          <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
+            <tr>
+              <td><%= attachment_image_tag(user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
+              <td>
+              <%= link_to user_path(user.id) do %>
+              <%= user.name %>
+              <% end %>
+              </td>
+              <td><%= "フォロー数: #{user.follower.count}" %></td>
+              <td><%= "フォロワー数: #{user.followed.count}" %></td>
+            </tr>
+        </tbody>
       <% end %>
-    </td>
-    <td><%= "フォロー数: #{user.follower.count}" %></td>
-		<td><%= "フォロワー数: #{user.followed.count}" %></td>
-  </tr>
-  </tbody>
-  <% end %>
-  <% end %>
-  </div><!--col-xs-12-->
-  </div><!--row-->
-  </div><!--container-->
+      <% end %>
+      
+    </div>
+  </div>
+</div>
