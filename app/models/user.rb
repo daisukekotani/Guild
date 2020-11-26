@@ -37,6 +37,7 @@ class User < ApplicationRecord
   validates :job, length: { maximum: 10 }
   validates :introduction, length: { maximum: 10 }
 
+
   enum industry: {
     農業・林業: 0,
     漁業: 1,
