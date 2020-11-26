@@ -4,7 +4,6 @@
     <title>Guild</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://kit.fontawesome.com/08695b9566.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,13 +11,9 @@
 
     <header class="navbar navbar navbar-inverse">
       <div class="container">
-        <div class="low">
-        <div class="col-xs-12 col-lg-12">
-        <nav class="nav navbar-nav navbar-left">
-         <div class="logo"></div>
-        </nav>
-          <nav>
-            <ul class="nav navbar-nav navbar-right list-inline">
+          <ul class="nav navbar-nav navbar-left">
+            
+            <li><div class="logo"></div></li>
             <% if user_signed_in? %>
               <li><%= link_to 'About', homes_about_path %></li>
               <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
@@ -26,39 +21,26 @@
               <li><%= link_to 'ギルド員の声', voices_path %></li>
                <li><%= link_to "ランキング", ranking_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <li>
+              <%= form_tag(search_path, method: :get) do %>
+　　          <%= select_tag 'range' ,options_for_select([['---選択してください---', '0'], ['ギルド員', '1'], ['ギルド員の声', '2']]) %>
+   　          <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+   　        　<%= text_field_tag (:word) %>
+          　　<%= submit_tag "検索" %>
+          　　 <% end %>
+              </li>
             <% else %>
-              <li><%= link_to 'Top', root_path %></li>
               <li><%= link_to 'About', homes_about_path %></li>
               <li><%= link_to '新規登録', new_user_registration_path %></li>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
             <% end %>
-            </ul>  
-         </nav>
-        </div>
-      </div>
+          </ul>
+        </nav>
       </div>
     </header>
-         <!--検索フォーム-->
-         <% if user_signed_in? %>
-　　　　　<div class="container">
-            <div class="row">
-              <div class="col-xs-10 col-xs-offset-2">
-              <% if user_signed_in? %>
-              <%= form_tag(search_path, method: :get) do %>
-　　          <%= select_tag 'range' ,options_for_select([['---選択してください---', ''], ['User', '1'], ['Voice', '2']]) %>
-   　          <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-   　        　<%= text_field_tag (:word) %>
-          　　<%= submit_tag "検索" %>
-              <% end %>
-              <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <!--検索フォーム-->
+        
     
   <body>
-    <p id="notice"><%= notice %></p>
     <%= yield %>
   </body>
 </html>
