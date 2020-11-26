@@ -1,4 +1,5 @@
 class Voice < ApplicationRecord
+
   belongs_to :user
   has_many :goodjobs, dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -8,6 +9,7 @@ class Voice < ApplicationRecord
 
   validates :body, presence: true
   validates :body, length: { maximum: 128 }
+
 
   def self.search(search, word)
     @voice = if search == 'forward_match'

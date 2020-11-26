@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-xs-12 col-lg-12">
       <h2><%= @voice.user.name %>の声</h2>
@@ -35,7 +36,9 @@
               </td>
           </tbody>
         </table>  
+
         <h2>コメント</h2>
+        <!--<div id="post_comment-btn<%= @voice.id %>">-->
         <div class = "post_comments" >
         <%= render 'post_comments/post_comment' %>
         </div>
