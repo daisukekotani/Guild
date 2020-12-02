@@ -8,10 +8,11 @@
             <tr>
               <td><%= attachment_image_tag voice.user, :profile_image, :fill, 34, 34, format: 'jpeg' %></td>
               <td><%= link_to voice.body, voice_path(voice.id) %></td>
-              <td><!--グッジョブボタン-->
-               <div id="goodjob-btn-<%= voice.id %>">
-               <%= render 'goodjobs/goodjob', voice: voice %>
-               </div>
+              <td><p>[<%= voice.score %>]</p></td>
+              <td>
+                <div id="goodjob-btn-<%= voice.id %>">
+                <%= render 'goodjobs/goodjob', voice: voice %>
+                </div>
              </td>
              <td>
               <% if voice.post_comments.count == 0 %>

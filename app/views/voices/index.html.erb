@@ -9,6 +9,7 @@
               <tr>
                 <td><%= attachment_image_tag(voice.user, :profile_image, :fill, 34, 34, fallback: "no-image-mini.jpg") %></td>
                 <td><%= link_to voice.body, voice_path(voice.id) %></td>
+                <td><p>[<%= voice.score %>]</p></td>
                 <td>
                   <div id="goodjob-btn-<%= voice.id %>">
                   <%= render 'goodjobs/goodjob', voice: voice %></div>
