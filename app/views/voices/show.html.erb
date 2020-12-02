@@ -34,11 +34,13 @@
               <td>
                 <%= @voice.body %>
                 <p>スコア[<%= @voice.score %>]</p>
-                <% if @voice.score <= 0 %>
-                <p>ネガティブな投稿</p>
-                <% else %>
-                <p>ポジティブな投稿</p>
-                <% end %>
+                  <% if @voice.score == nil %>
+                  <p>スコアがありません</p>
+                  <% elsif @voice.score < 0 %>
+                  <p>ネガティブな投稿</p>
+                  <% else %>
+                  <p>ポジティブな投稿</p>
+                  <% end %>
               </td>
           </tbody>
         </table>  
