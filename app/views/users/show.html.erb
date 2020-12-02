@@ -78,7 +78,7 @@
                 </td>
                 <td>
                   <p>スコア[<%= voice.score %>]</p>
-                  <% if voice.score < 0 %>
+                  <% if voice.score <= 0 %>
                   <p>ネガティブな投稿</p>
                   <% else %>
                   <p>ポジティブな投稿</p>
