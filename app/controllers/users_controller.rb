@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     @voices = @user.voices
@@ -57,4 +58,5 @@ class UsersController < ApplicationController
       :profile_image
     )
   end
+  
 end

@@ -11,6 +11,10 @@
 		</div>
 	<% end %>
 	<!-- エラーメッセージ表示-->
+	
+<% if @user.email == "test@example.com" %>
+<h2>テストユーザーの登録情報は変更出来ません</h2>
+<% else %>	
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-heading"><h3>プロフィール編集</h3></div>
@@ -85,6 +89,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
+<% end %>
