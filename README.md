@@ -1,24 +1,57 @@
-# README
+### Guild(ギルド)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+なりたい職業を見つけるきっかけを作る
 
-Things you may want to cover:
+同業者同士の交流
 
-* Ruby version
+### サイトテーマ
+新しい世界へ飛び込む
 
-* System dependencies
+### テーマを選んだ理由
+今の仕事このまま続けていくべきなのか・・・でもこれから先何をしたいのか自分でも分からない・・・
 
-* Configuration
+この職に付きたいけど何から始めればいいのか分からない・・・
 
-* Database creation
+ぼんやりした悩みを抱えている人はこの日本中たくさん居ると思います
 
-* Database initialization
+この問題を解決したいと思い、なりたい職業を見つける、同業者になろうとしている人にアドバイスを送るコミュニティサイトを作ろうと考えました
 
-* How to run the test suite
+ギルドの由来
 
-* Services (job queues, cache servers, search engines, etc.)
+ギルドは、中世より近世にかけて西欧諸都市において商工業者の間で結成された各種の職業別組合。商人ギルド・手工業ギルド（同職ギルド）などに区分される。（Wikipediaより引用）
 
-* Deployment instructions
 
-* ...
+### ターゲットユーザ
+求職者：やりたい仕事を見つけたい人
+
+求職者：憧れの職業になる為の道のりが分からない人
+
+就業者：業界の活性化を図りたい人
+
+就業者：同業者の思っている事、考えを知りたい人
+
+### 主な利用シーン
+求職者：やりたい事が見つからない学生や、転職したい社会人がこのサイトを見て、就業者からのアドバイスや、就業者同士のリアルな意見交換を参考に、新しい世界に飛び込むきっかけを作る
+
+求職者：同じ職業を目指す人同士の交流
+
+就業者：なりたい職業になるにはどうすればいいか分からない求職者に向けてその業界の就業者が自分の体験談等を交えながらアドバイスを送る
+
+就業者：同業者同士の交流（キャリアアップに関する事から今抱えている悩み、愚痴などなんでも）
+
+## 設計書
+
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1-C96z3OCWb7Es2eBJsmYFfar_5QeF2iUF5QkScgMGV4/edit#gid=0
+
+## 開発環境
+- OS：MAC(macOS)
+- 言語：HTML,CSS,JavaScript,Ruby
+- フレームワーク：Ruby on Rails 5
+- JSライブラリ：jQuery
+- IDE ： Cloud9
+
+## 使用素材
+- いらすとや（https://www.irasutoya.com）
+

@@ -10,57 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_112_092_359) do
-  create_table 'goodjobs', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'voice_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema.define(version: 2020_12_02_062639) do
+
+  create_table "goodjobs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "voice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'post_comments', force: :cascade do |t|
-    t.text 'comment'
-    t.integer 'user_id'
-    t.integer 'voice_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "post_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "voice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'relationships', force: :cascade do |t|
-    t.integer 'follower_id'
-    t.integer 'followed_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.string 'name'
-    t.string 'sex'
-    t.boolean 'sex_hidden', default: false, null: false
-    t.integer 'age'
-    t.boolean 'age_hidden', default: false, null: false
-    t.integer 'income'
-    t.boolean 'income_hidden', default: false, null: false
-    t.integer 'industry'
-    t.string 'job'
-    t.text 'introduction'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'profile_image_id'
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.string "sex"
+    t.boolean "sex_hidden", default: false, null: false
+    t.integer "age"
+    t.boolean "age_hidden", default: false, null: false
+    t.integer "income"
+    t.boolean "income_hidden", default: false, null: false
+    t.integer "industry"
+    t.string "job"
+    t.text "introduction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "profile_image_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table 'voices', force: :cascade do |t|
-    t.integer 'user_id'
-    t.string 'image_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.text 'body'
+  create_table "voices", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "body"
+    t.decimal "score", precision: 5, scale: 3
   end
+
 end

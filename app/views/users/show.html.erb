@@ -60,7 +60,9 @@
       <% end %>
       <% end %>
       <%  if @user.id == current_user.id %>
+      <% unless @user.email == "test@example.com" %>
         <%= link_to '登録情報編集', edit_user_path(@user), class: "btn-sm btn-warning" %>
+      <% end %>
       <% end %>
         <%= link_to '新規投稿', new_voice_path, class: "btn-sm btn-success" %>
     </div> 
@@ -75,6 +77,16 @@
               <tr>
                 <td><%= attachment_image_tag @user, :profile_image, :fill, 34, 34, format: 'jpeg' %>
                 <%= link_to voice.body, voice_path(voice.id) %>
+                </td>
+                <td>
+                  <p>スコア[<%= voice.score %>]</p>
+                  <% if voice.score == nil %>
+                  <p>スコアがありません</p>
+                  <% elsif voice.score < 0 %>
+                  <p>ネガティブな投稿</p>
+                  <% else %>
+                  <p>ポジティブな投稿</p>
+                  <% end %>
                 </td>
               </tr>
                 

@@ -7,7 +7,7 @@ class VoicesController < ApplicationController
   def create
     @voice = Voice.new(voice_params)
     @voice.user_id = current_user.id
-
+    @voice.score = Language.get_data(voice_params[:body])
     if @voice.save
       redirect_to user_path(current_user.id), notice: '投稿できました'
     else

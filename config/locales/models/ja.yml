@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      voice: 投稿
+    attributes:
+      user:
+        id: ID
+        name: 名前
+        sex: 性別
+        age: 年齢
+        income: 年収
+        industry: 業種
+        job: 職種
+        introduction: 自己紹介コメント
+        created_at: 登録日時
+        updated_at: 更新日時
+        email: メールアドレス
+        password: パスワード
+      voice:
+        body: 声
