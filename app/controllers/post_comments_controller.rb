@@ -1,17 +1,17 @@
 class PostCommentsController < ApplicationController
   before_action :set_post_comment
 
+  
   def create
     @voice = Voice.find(params[:voice_id])
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.voice_id = @voice.id
     @post_comment.save
-    # redirect_to request.referer
+    @post_comment = PostComment.new(post_comment_params)
   end
 
   def destroy
     @post_comment = PostComment.find_by(id: params[:id], voice_id: params[:voice_id]).destroy
-    # redirect_to request.referer
   end
 
   private
