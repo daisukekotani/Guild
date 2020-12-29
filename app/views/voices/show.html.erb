@@ -22,25 +22,22 @@
                 </div>
               </td>
               <td>
-                <% if @voice.post_comments.count == 0 %>
-                <i class="far fa-comment-dots"></i>
-                <%= @voice.post_comments.count %>
-                <% else %>
-                <i class="fas fa-comment-dots"></i>
-                <%= @voice.post_comments.count %>
-                <% end %>
+                <div class = "post_comments_count">
+                  <%= render 'post_comments/post_comment_count' %>
+                </div>
+                
               </td>
             </tr>  
               <td>
                 <%= @voice.body %>
                 <p>スコア[<%= @voice.score %>]</p>
-                  <% if @voice.score == nil %>
-                  <p>スコアがありません</p>
-                  <% elsif @voice.score < 0 %>
-                  <p>ネガティブな投稿</p>
-                  <% else %>
-                  <p>ポジティブな投稿</p>
-                  <% end %>
+                <% if @voice.score == nil %>
+                <p>スコアがありません</p>
+                <% elsif @voice.score < 0 %>
+                <p>ネガティブな投稿</p>
+                <% else %>
+                <p>ポジティブな投稿</p>
+                <% end %>
               </td>
           </tbody>
         </table>  
