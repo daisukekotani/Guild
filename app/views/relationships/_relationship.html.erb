@@ -1,6 +1,6 @@
-<% if @user.id == current_user.id %>
+<!--< if @user.id == current_user.id %>-->
 <!--ログインユーザーのshowページではフォローボタン非表示-->
-<% else %>
+<!--< else %>-->
 <% if user_signed_in? %>
 <% if current_user.following?(@user) %>
 <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, remote: true, class: "btn-sm btn-danger" %>
@@ -8,4 +8,4 @@
 <%= link_to 'フォローする', follow_path(@user.id), method: :POST, remote: true, class: "btn-sm btn-success" %>
 <% end %>
 <% end %>
-<% end %>
+<!--< end %>-->
