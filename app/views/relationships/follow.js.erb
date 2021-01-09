@@ -1,2 +1,3 @@
 $('.relationships').html("<%= escape_javascript(render partial: "relationships/relationship", locals: { user: @user }) %>")
+$('.follower_count').html("<%= escape_javascript(render partial: "relationships/follower_count", locals: { user: @user }) %>")
 <!--alert('follow呼ばれた');-->
