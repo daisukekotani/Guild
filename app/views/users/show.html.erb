@@ -48,7 +48,11 @@
         </tr>
         <tr>
           <th>フォワー数</th>
-          <th><%= link_to @user.followed.count ,users_follower_path(@user) %></th>
+          <th>
+          <div class='follower_count'>
+            <%= render 'relationships/follower_count'%>
+          </div>
+          </th>
         </tr>
       </table>
       
